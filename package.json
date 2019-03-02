@@ -1,0 +1,57 @@
+{
+  "name": "population-management",
+  "version": "1.0.0",
+  "description": "A population management system",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run pretest && nyc --reporter=html mocha server/tests/*.spec.js --compilers js:@babel/register --timeout 10000 && nyc report",
+    "pretest": "export NODE_ENV=test && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "start:server": "nodemon --exec babel-node server/server.js",
+    "heroku-postbuild": "babel -d ./dist ./server -s",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "pg": "^7.8.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0",
+    "validatorjs": "^3.15.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-transform-async-to-generator": "^7.2.0",
+    "@babel/preset-env": "^7.1.2",
+    "@babel/register": "^7.0.0",
+    "babel-core": "^7.0.0-bridge",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "regenerator-runtime": "^0.12.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "nyc": "^13.3.0",
+    "supertest": "^3.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codestaintin/population-management.git"
+  },
+  "author": "Isioye Mohammed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codestaintin/population-management/issues"
+  },
+  "homepage": "https://github.com/codestaintin/population-management#readme"
+}
