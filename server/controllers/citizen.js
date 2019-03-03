@@ -18,14 +18,14 @@ export default class Citizens {
     const validator = new Validator(body, Citizen.createRules());
     if (validator.passes()) {
       try {
-        const newUser = await Citizen.create({
+        const newCitizen = await Citizen.create({
           locationId: req.body.locationId,
           name: req.body.name,
           gender: req.body.gender
         });
         return res.status(201).json({
           message: 'Citizen created',
-          newUser
+          newCitizen
         })
       } catch(error) {
         return res.status(500).json({
