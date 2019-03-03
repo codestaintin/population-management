@@ -13,6 +13,10 @@ export default (sequelize, DataTypes) => {
     gender: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    locationId: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE'
     }
   }, {});
   Citizen.associate = function(models) {
@@ -22,8 +26,8 @@ export default (sequelize, DataTypes) => {
     })
   };
   Citizen.createRules = () => ({
-    name: 'min:2',
-    gender: 'regex:/^male$|^female$|^M|^m|^F|^f/'
+    name: 'min:2|required',
+    gender: ['required','regex:/^male$|^female$/']
   });
   return Citizen;
 };
