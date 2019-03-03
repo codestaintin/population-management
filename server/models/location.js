@@ -6,11 +6,13 @@ export default (sequelize, DataTypes) => {
     },
     malePopulation: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
     },
     femalePopulation: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
     },
     locality: {
       type: DataTypes.TEXT,
@@ -20,6 +22,7 @@ export default (sequelize, DataTypes) => {
   Location.associate = function(models) {
     // associations can be defined here
     Location.hasMany(models.Citizen, {
+      as: 'citizen',
       foreignKey: 'locationId'
     })
   };
